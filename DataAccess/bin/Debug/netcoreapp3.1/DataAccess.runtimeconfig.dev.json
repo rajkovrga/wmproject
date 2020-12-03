@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\rajko\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\rajko\\.nuget\\packages",
+      "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
+    ]
+  }
+}
