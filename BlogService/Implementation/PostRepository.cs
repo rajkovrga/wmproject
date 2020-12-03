@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using FluentValidation;
 using BlogService.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogService.Implementation
 {
@@ -35,7 +36,7 @@ namespace BlogService.Implementation
         }
         public PostDto GetPostByID(int entityId)
         {
-            var entity = _context.Posts.Where(x => x.Id == entityId).FirstOrDefault();
+            var entity = _context.Posts.Include(x => x.Category).Include(x => x.Manufacture).Include(x => x.Supplier).Where(x => x.Id == entityId).FirstOrDefault();
 
             if (entity == null)
             {

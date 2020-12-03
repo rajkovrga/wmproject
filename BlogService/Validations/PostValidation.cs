@@ -14,6 +14,7 @@ namespace BlogService.Validations
         {
             RuleFor(x => x.Title)
                 .NotEmpty()
+                .MinimumLength(5)
                 .DependentRules(() =>
                 {
                     RuleFor(x => x.Title)
@@ -22,7 +23,12 @@ namespace BlogService.Validations
                 });
 
             RuleFor(x => x.Description)
-              .NotEmpty();
+              .NotEmpty()
+              .MinimumLength(5);
+
+            RuleFor(x => x.Price)
+                .NotEmpty()
+                .GreaterThanOrEqualTo(0);
 
             RuleFor(x => x.Category)
                 .NotEmpty()

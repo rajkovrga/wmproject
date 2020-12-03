@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7oG2cBAxNdehQwKmof4XDkAbaWt/UqEph4GbvBM811bZV+dEOtgXTHkJkws3DHSJerG8dPdcDesWX83B3cm3og==",
+  "dgSpecHash": "HF2pRtcdRBrmd2fueVL+qYXDvVt5avJoMbXe6+FiBl1qkEM47ql7bPxGm5eJx1SA06g0+bb5lPNmvRii8ANGxw==",
   "success": true,
   "projectFilePath": "C:\\Users\\rajko\\source\\repos\\Blog\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,7 @@
     "C:\\Users\\rajko\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.0\\microsoft.entityframeworkcore.design.5.0.0.nupkg.sha512",
     "C:\\Users\\rajko\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.0\\microsoft.entityframeworkcore.relational.5.0.0.nupkg.sha512",
     "C:\\Users\\rajko\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.0\\microsoft.entityframeworkcore.sqlserver.5.0.0.nupkg.sha512",
-    "C:\\Users\\rajko\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\3.1.10\\microsoft.entityframeworkcore.tools.3.1.10.nupkg.sha512",
+    "C:\\Users\\rajko\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.0\\microsoft.entityframeworkcore.tools.5.0.0.nupkg.sha512",
     "C:\\Users\\rajko\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\5.0.0\\microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\rajko\\.nuget\\packages\\microsoft.extensions.caching.memory\\5.0.0\\microsoft.extensions.caching.memory.5.0.0.nupkg.sha512",
     "C:\\Users\\rajko\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",

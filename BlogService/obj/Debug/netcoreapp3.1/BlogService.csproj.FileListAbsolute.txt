@@ -7,3 +7,8 @@ C:\Users\rajko\source\repos\Blog\BlogService\obj\Debug\netcoreapp3.1\BlogService
 C:\Users\rajko\source\repos\Blog\BlogService\obj\Debug\netcoreapp3.1\BlogService.csproj.CoreCompileInputs.cache
 C:\Users\rajko\source\repos\Blog\BlogService\obj\Debug\netcoreapp3.1\BlogService.dll
 C:\Users\rajko\source\repos\Blog\BlogService\obj\Debug\netcoreapp3.1\BlogService.pdb
+C:\Users\rajko\source\repos\Blog\BlogService\bin\Debug\netcoreapp3.1\BlogModels.dll
+C:\Users\rajko\source\repos\Blog\BlogService\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\rajko\source\repos\Blog\BlogService\bin\Debug\netcoreapp3.1\BlogModels.pdb
+C:\Users\rajko\source\repos\Blog\BlogService\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\rajko\source\repos\Blog\BlogService\obj\Debug\netcoreapp3.1\BlogService.csproj.CopyComplete

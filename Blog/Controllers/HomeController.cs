@@ -1,9 +1,8 @@
-﻿using Blog.Models;
+﻿using BlogService.Dto;
+using BlogService.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,27 +10,27 @@ namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController()
         {
-            _logger = logger;
         }
-
-        public IActionResult Index()
+        [Route("/posts")]
+        [Route("/")]
+        public IActionResult Index([FromServices] IPostRepository postRepository, [FromQuery] int page = 1)
         {
-            return View();
+            var model = postRepository.GetPosts(new PaginationDto { 
+                CurrentPage = page,
+                PerPage = 4
+            });
+
+            return View(model);
         }
-
-        public IActionResult Privacy()
+        [Route("/edit/{id}")]
+        public IActionResult Edit([FromServices] IPostRepository postRepository, int id)
         {
-            return View();
-        }
+            var model = postRepository.GetPostByID(id);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(model);
         }
     }
 }

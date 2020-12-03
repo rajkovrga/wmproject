@@ -7,7 +7,7 @@ namespace BlogService.Repositories
 {
     public interface IPostRepository
     {
-        IEnumerable<ResultPaginationDto<PostDto>> GetPosts(PaginationDto search);
+        ResultPaginationDto<PostDto> GetPosts(PaginationDto search);
         PostDto GetPostByID(int customerId);
         void InsertPost(PostDto entity);
         void DeletePost(int entityrId);
