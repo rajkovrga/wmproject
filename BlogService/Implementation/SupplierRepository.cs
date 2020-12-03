@@ -1,8 +1,11 @@
-﻿using BlogService.Dto;
+﻿using BlogModels.Models;
+using BlogService.Dto;
+using BlogService.Exceptions;
 using BlogService.Repositories;
 using DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BlogService.Implementation
@@ -16,34 +19,70 @@ namespace BlogService.Implementation
             _context = context;
         }
 
-        public void DeletePost(int entityId)
+        public void DeleteSupplier(int entityId)
         {
-            throw new NotImplementedException();
+            var item = _context.Suppliers.Find(entityId);
+
+            if(item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            _context.Remove(item);
+
         }
 
-        public SupplierDto GetPostByID(int customerId)
+        public SupplierDto GetSupplierByID(int customerId)
         {
-            throw new NotImplementedException();
+            var item = _context.Suppliers.Find(customerId);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            return new SupplierDto
+            {
+                Id = item.Id,
+                Name = item.Name
+            };
         }
 
-        public IEnumerable<SupplierDto> GetPosts()
+        public IEnumerable<SupplierDto> GetSuppliers()
         {
-            throw new NotImplementedException();
+            var items = _context.Suppliers.ToList();
+
+            return items.Select(x => new SupplierDto
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
         }
 
-        public void InsertPost(SupplierDto entity)
+        public void InsertSupplier(SupplierDto entity)
         {
-            throw new NotImplementedException();
+            var newItem = new Supplier();
+
+            newItem.Name = entity.Name;
+
+            _context.Add(newItem);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
-        public void UpdatePost(SupplierDto entity)
+        public void UpdateSupplier(SupplierDto entity)
         {
-            throw new NotImplementedException();
+            var item = _context.Suppliers.Find(entity.Id);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            item.Name = entity.Name;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BlogService.Implementation
 {
     public class PostJsonReposiotry : IPostRepository
     {
-        public void DeletePost(int entityrId)
+        public void DeletePost(int entityId)
         {
             throw new NotImplementedException();
         }

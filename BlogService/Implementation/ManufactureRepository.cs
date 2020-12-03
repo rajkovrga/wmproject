@@ -1,8 +1,11 @@
-﻿using BlogService.Dto;
+﻿using BlogModels.Models;
+using BlogService.Dto;
+using BlogService.Exceptions;
 using BlogService.Repositories;
 using DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BlogService.Implementation
@@ -16,34 +19,69 @@ namespace BlogService.Implementation
             _context = context;
         }
 
-        public void DeletePost(int entityId)
+        public void DeleteManufacture(int entityId)
         {
-            throw new NotImplementedException();
+            var item = _context.Manufactures.Find(entityId);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            _context.Remove(item);
         }
 
-        public ManufactureDto GetPostByID(int customerId)
+        public ManufactureDto GetManufactureByID(int customerId)
         {
-            throw new NotImplementedException();
+            var item = _context.Manufactures.Find(customerId);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            return new ManufactureDto
+            {
+                Id = item.Id,
+                Name = item.Name
+            };
         }
 
-        public IEnumerable<ManufactureDto> GetPosts()
+        public IEnumerable<ManufactureDto> GetManufactures()
         {
-            throw new NotImplementedException();
+            var items = _context.Manufactures.ToList();
+
+            return items.Select(x => new ManufactureDto
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
         }
 
-        public void InsertPost(ManufactureDto entity)
+        public void InsertManufacture(ManufactureDto entity)
         {
-            throw new NotImplementedException();
+            var newItem = new Manufacture();
+
+            newItem.Name = entity.Name;
+
+            _context.Add(newItem);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
 
-        public void UpdatePost(ManufactureDto entity)
+        public void UpdateManufacture(ManufactureDto entity)
         {
-            throw new NotImplementedException();
+            var item = _context.Manufactures.Find(entity.Id);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            item.Name = entity.Name;
         }
     }
 }

@@ -20,14 +20,15 @@
 
         @foreach (var item in Model.Items)
         {
-            <tr>
-                <th>@item.Title</th>
-                <td>@item.Description</td>
-                <td>@item.Price</td>
-                <td>@item.Category.Name</td>
-                <td>@item.Supplier.Name</td>
-                <td>@item.Manufacture.Name</td>
-            </tr>
+        <tr>
+            <th>@item.Title</th>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.Category.Name</td>
+            <td>@item.Supplier.Name</td>
+            <td>@item.Manufacture.Name</td>
+            <td><a href="/edit/@item.Id">Edit</a></td>
+        </tr>
 
 
 }

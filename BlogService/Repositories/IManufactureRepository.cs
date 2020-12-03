@@ -7,11 +7,11 @@ namespace BlogService.Repositories
 {
     public interface IManufactureRepository
     {
-        IEnumerable<ManufactureDto> GetPosts();
-        ManufactureDto GetPostByID(int customerId);
-        void InsertPost(ManufactureDto entity);
-        void DeletePost(int entityrId);
-        void UpdatePost(ManufactureDto entity);
+        IEnumerable<ManufactureDto> GetManufactures();
+        ManufactureDto GetManufactureByID(int customerId);
+        void InsertManufacture(ManufactureDto entity);
+        void DeleteManufacture(int entityId);
+        void UpdateManufacture(ManufactureDto entity);
         void Save();
     }
 }

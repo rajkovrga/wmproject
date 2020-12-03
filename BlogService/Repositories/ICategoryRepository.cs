@@ -7,11 +7,11 @@ namespace BlogService.Repositories
 {
     public interface ICategoryRepository
     {
-        IEnumerable<CategoryDto> GetPosts();
-        CategoryDto GetPostByID(int customerId);
-        void InsertPost(CategoryDto entity);
-        void DeletePost(int entityrId);
-        void UpdatePost(CategoryDto entity);
+        IEnumerable<CategoryDto> GetCategories();
+        CategoryDto GetCategoryByID(int customerId);
+        void InsertCategory(CategoryDto entity);
+        void DeleteCategory(int entityId);
+        void UpdateCategory(CategoryDto entity);
         void Save();
     }
 }

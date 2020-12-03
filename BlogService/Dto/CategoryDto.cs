@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BlogService.Dto
 {
-    class CategoryDto
+    public class CategoryDto : ItemDto
     {
+
     }
 }

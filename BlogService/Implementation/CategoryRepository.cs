@@ -1,9 +1,11 @@
-﻿using BlogService.Dto;
+﻿using BlogModels.Models;
+using BlogService.Dto;
 using BlogService.Exceptions;
 using BlogService.Repositories;
 using DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BlogService.Implementation
@@ -17,24 +19,51 @@ namespace BlogService.Implementation
             _context = context;
         }
 
-        public void DeletePost(int entityId)
+        public void DeleteCategory(int entityId)
         {
-            throw new NotImplementedException();
+            var item = _context.Categories.Find(entityId);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            _context.Remove(item);
         }
 
-        public CategoryDto GetPostByID(int customerId)
+        public CategoryDto GetCategoryByID(int customerId)
         {
-            throw new NotImplementedException();
+            var item = _context.Categories.Find(customerId);
+
+            if (item == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            return new CategoryDto { 
+                Id = item.Id,
+                Name = item.Name
+            };
         }
 
-        public IEnumerable<CategoryDto> GetPosts()
+        public IEnumerable<CategoryDto> GetCategories()
         {
-            throw new NotImplementedException();
+            var items = _context.Categories.ToList();
+
+            return items.Select(x => new CategoryDto
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
         }
 
-        public void InsertPost(CategoryDto entity)
+        public void InsertCategory(CategoryDto entity)
         {
-            throw new NotImplementedException();
+            var newItem = new Category();
+
+            newItem.Name = entity.Name;
+
+            _context.Add(newItem);
         }
 
         public void Save()
@@ -42,7 +71,7 @@ namespace BlogService.Implementation
             _context.SaveChanges();
         }
 
-        public void UpdatePost(CategoryDto entity)
+        public void UpdateCategory(CategoryDto entity)
         {
             var item = _context.Categories.Find(entity.Id);
 

@@ -29,7 +29,10 @@ namespace Blog
             services.AddControllersWithViews();
             services.AddTransient<DataContext>()
                 .AddTransient<IPostRepository, PostRepository>()
-              //  .AddTransient<IPostRepository, PostJsonReposiotry>() in case if you want using data from JSON file
+                .AddTransient<ICategoryRepository, CategoryRepository>()
+                  .AddTransient<IManufactureRepository, ManufactureRepository>()
+                  .AddTransient<ISupplierRepostory, SupplierRepository>()
+                //  .AddTransient<IPostRepository, PostJsonReposiotry>() in case if you want using data from JSON file
                 .AddTransient<PostValidation>();
 
         }

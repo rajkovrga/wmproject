@@ -3,6 +3,7 @@ using BlogService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,11 +27,25 @@ namespace Blog.Controllers
             return View(model);
         }
         [Route("/edit/{id}")]
-        public IActionResult Edit([FromServices] IPostRepository postRepository, int id)
+        public IActionResult Edit([FromServices] IPostRepository postRepository, [FromServices] IManufactureRepository manufactureRepository, [FromServices] ISupplierRepostory supplierRepostory, [FromServices] ICategoryRepository categoryRepository, int id)
         {
-            var model = postRepository.GetPostByID(id);
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Post = postRepository.GetPostByID(id); ;
+            mymodel.Categories = categoryRepository.GetCategories();
+            mymodel.Suppliers = supplierRepostory.GetSuppliers();
+            mymodel.Manufactures = manufactureRepository.GetManufactures();
 
-            return View(model);
+            return View(mymodel);
+        }
+
+        [Route("/create")]
+        public IActionResult Create([FromServices] IPostRepository postRepository, [FromServices] IManufactureRepository manufactureRepository, [FromServices] ISupplierRepostory supplierRepostory, [FromServices] ICategoryRepository categoryRepository, int id)
+        {
+            dynamic mymodel = new ExpandoObject();
+            mymodel.Categories = categoryRepository.GetCategories();
+            mymodel.Suppliers = supplierRepostory.GetSuppliers();
+            mymodel.Manufactures = manufactureRepository.GetManufactures();
+            return View(mymodel);
         }
     }
 }

@@ -151,3 +151,4 @@ C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Blog.Views.pdb
 C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs
+C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs

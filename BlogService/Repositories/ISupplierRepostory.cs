@@ -7,11 +7,11 @@ namespace BlogService.Repositories
 {
     public interface ISupplierRepostory
     {
-        IEnumerable<SupplierDto> GetPosts();
-        SupplierDto GetPostByID(int customerId);
-        void InsertPost(SupplierDto entity);
-        void DeletePost(int entityId);
-        void UpdatePost(SupplierDto entity);
+        IEnumerable<SupplierDto> GetSuppliers();
+        SupplierDto GetSupplierByID(int customerId);
+        void InsertSupplier(SupplierDto entity);
+        void DeleteSupplier(int entityId);
+        void UpdateSupplier(SupplierDto entity);
         void Save();
     }
 }

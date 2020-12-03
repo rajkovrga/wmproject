@@ -1,4 +1,4 @@
-﻿
+﻿@model dynamic; 
 @{
     ViewData["Title"] = "Edit post";
 }
@@ -7,22 +7,71 @@
 <div class="row">
     <form action="/edit/" class="col-4">
         <div class="form-group">
-            <label for="exampleInputEmail1">Title</label>
-            <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="title">Title</label>
+            <input type="text" value="@Model.Post.Title" class="form-control" id="title" aria-describedby="emailHelp">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Description</label>
-            <input type="text" class="form-control" placeholder="Password">
+            <label for="desc">Description</label>
+            <input type="text" id="desc" value="@Model.Post.Description" class="form-control" >
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Price</label>
-            <input type="number" class="form-control" placeholder="Password">
+            <label for="price">Price</label>
+            <input manifest="price" type="number" value="@Model.Post.Price" class="form-control" >
         </div>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <label for="category">Category</label>
+
+        <select id="category" name="category" class="form-control">
+            @foreach (var item in Model.Categories)
+            {
+                @if (item.Id == Model.Post.Category.Id)
+                {
+                    <option selected>
+                        @item.Name
+                    </option>
+                    break;
+                }
+                <option selected>
+                    @item.Name
+                </option>
+            }
+        </select>
+
+        <label for="supplier">Supplier</label>
+
+        <select id="supplier" name="supplier" class="form-control">
+            @foreach (var item in Model.Suppliers)
+            {
+                @if (item.Id == Model.Post.Supplier.Id)
+                {
+                    <option selected>
+                        @item.Name
+                    </option>
+                    break;
+                }
+                <option selected>
+                    @item.Name
+                </option>
+            }
+        </select>
+        <label for="manufacture">Manufacture</label>
+
+        <select id="manufacture" name="manufacture" class="form-control">
+            @foreach (var item in Model.Manufactures)
+            {
+                @if (item.Id == Model.Post.Manufacture.Id)
+                {
+                    <option selected>
+                        @item.Name
+                    </option>
+                    break;
+                }
+                <option selected>
+                    @item.Name
+                </option>
+            }
+        </select>
+        <br />
+        <button type="submit" class="btn btn-primary">Edit post</button>
     </form>
 </div>
