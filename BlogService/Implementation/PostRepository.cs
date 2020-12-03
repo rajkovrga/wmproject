@@ -9,12 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentValidation;
+using BlogService.Repositories;
 
 namespace BlogService.Implementation
 {
-    public class PostRepository : IRepository<PostDto, ResultPaginationDto<PostDto>, PaginationDto>
+    public class PostRepository : IPostRepository
     {
-
         private readonly DataContext _context;
         private PostValidation _postValidation;
         public PostRepository(DataContext context, PostValidation postValidation)
@@ -22,19 +22,18 @@ namespace BlogService.Implementation
             _context = context;
             _postValidation = postValidation;
         }
-        public void Delete(int entityId)
+        public void DeletePost(int entityId)
         {
             var entity = _context.Posts.Where(x => x.Id == entityId).FirstOrDefault();
 
-            if(entity == null)
+            if (entity == null)
             {
                 throw new ModelNotFoundException();
             }
 
             _context.Remove(entity);
-
         }
-        public PostDto GetByID(int entityId)
+        public PostDto GetPostByID(int entityId)
         {
             var entity = _context.Posts.Where(x => x.Id == entityId).FirstOrDefault();
 
@@ -53,10 +52,8 @@ namespace BlogService.Implementation
                 Supplier = entity.Supplier,
                 Title = entity.Title
             };
-
         }
-
-        public ResultPaginationDto<PostDto> GetList(PaginationDto search)
+        public ResultPaginationDto<PostDto> GetPosts(PaginationDto search)
         {
             var items = _context.Posts.AsQueryable();
             var countItems = items.Count();
@@ -79,8 +76,7 @@ namespace BlogService.Implementation
                 PerPage = search.PerPage
             };
         }
-
-        public void Insert(PostDto entity)
+        public void InsertPost(PostDto entity)
         {
             _postValidation.ValidateAndThrow(entity);
 
@@ -99,7 +95,7 @@ namespace BlogService.Implementation
         {
             _context.SaveChanges();
         }
-        public void Update(PostDto entity)
+        public void UpdatePost(PostDto entity)
         {
             _postValidation.ValidateAndThrow(entity);
 

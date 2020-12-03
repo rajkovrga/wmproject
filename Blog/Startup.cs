@@ -1,3 +1,7 @@
+using BlogService.Implementation;
+using BlogService.Repositories;
+using BlogService.Validations;
+using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +27,11 @@ namespace Blog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<DataContext>()
+                .AddTransient<IPostRepository, PostRepository>()
+              //  .AddTransient<IPostRepository, PostJsonReposiotry>() in case if you want using data from JSON file
+                .AddTransient<PostValidation>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +48,7 @@ namespace Blog
             app.UseStaticFiles();
 
             app.UseRouting();
+            
 
             app.UseAuthorization();
 
