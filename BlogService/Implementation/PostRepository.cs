@@ -18,10 +18,12 @@ namespace BlogService.Implementation
     {
         private readonly DataContext _context;
         private PostValidation _postValidation;
-        public PostRepository(DataContext context, PostValidation postValidation)
+        private PostUpdateValidation _postUpdateValidation;
+        public PostRepository(DataContext context, PostValidation postValidation, PostUpdateValidation postUpdateValidation)
         {
             _context = context;
             _postValidation = postValidation;
+            _postUpdateValidation = postUpdateValidation;
         }
         public void DeletePost(int entityId)
         {
@@ -34,6 +36,19 @@ namespace BlogService.Implementation
 
             _context.Remove(entity);
         }
+
+        public int getByTitle(string title)
+        {
+            var r = _context.Posts.Where(x => x.Title == title).FirstOrDefault();
+
+            if(r == null)
+            {
+                throw new ModelNotFoundException();
+            }
+
+            return r.Id;
+        }
+
         public PostDto GetPostByID(int entityId)
         {
             var entity = _context.Posts.Include(x => x.Category).Include(x => x.Manufacture).Include(x => x.Supplier).Where(x => x.Id == entityId).FirstOrDefault();
@@ -85,9 +100,9 @@ namespace BlogService.Implementation
 
             newPost.Title = entity.Title;
             newPost.Description = entity.Description;
-            newPost.CategoryId = entity.Category.Id;
-            newPost.ManufactureId = entity.Manufacture.Id;
-            newPost.SupplierId = entity.Supplier.Id;
+            newPost.CategoryId = entity.CategoryId;
+            newPost.ManufactureId = entity.ManufactureId;
+            newPost.SupplierId = entity.SupplierId;
             newPost.Price = entity.Price;
 
             _context.Posts.Add(newPost);
@@ -98,7 +113,9 @@ namespace BlogService.Implementation
         }
         public void UpdatePost(PostDto entity)
         {
-            _postValidation.ValidateAndThrow(entity);
+            var r = entity;
+
+            _postUpdateValidation.ValidateAndThrow(entity);
 
             var row = _context.Posts.Where(x => x.Id == entity.Id).FirstOrDefault();
 
@@ -109,9 +126,9 @@ namespace BlogService.Implementation
 
             row.Title = entity.Title;
             row.Description = entity.Description;
-            row.CategoryId = entity.Category.Id;
-            row.ManufactureId = entity.Manufacture.Id;
-            row.SupplierId = entity.Supplier.Id;
+            row.CategoryId = entity.CategoryId;
+            row.ManufactureId = entity.ManufactureId;
+            row.SupplierId = entity.SupplierId;
             row.Price = entity.Price;
 
         }

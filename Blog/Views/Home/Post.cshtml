@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<h1>@Model.Title</h1>
+<p>@Model.Description</p>
+<p>@Model.Price</p>
+<p>@Model.Category.Name</p>
+<p>@Model.Supplier.Name</p>
+<p>@Model.Manufacture.Name</p>
+<p><a href="/edit/@Model.Id">Edit</a></p>

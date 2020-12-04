@@ -4,20 +4,21 @@
 }
 
 <h1>Edit post</h1>
-<div class="row">
-    <form action="/edit/" class="col-4">
+
+    <form action="/edit/@Model.Post.Id" method="post">
+        @Html.AntiForgeryToken()
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" value="@Model.Post.Title" class="form-control" id="title" aria-describedby="emailHelp">
+            <input type="text" name="title"  value="@Model.Post.Title" class="form-control" id="title" aria-describedby="emailHelp">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
             <label for="desc">Description</label>
-            <input type="text" id="desc" value="@Model.Post.Description" class="form-control" >
+            <input type="text" id="desc" name="description" value="@Model.Post.Description" class="form-control">
         </div>
         <div class="form-group">
             <label for="price">Price</label>
-            <input manifest="price" type="number" value="@Model.Post.Price" class="form-control" >
+            <input manifest="price" name="price" type="text" value="@Model.Post.Price" class="form-control">
         </div>
         <label for="category">Category</label>
 
@@ -26,14 +27,16 @@
             {
                 @if (item.Id == Model.Post.Category.Id)
                 {
-                    <option selected>
+                    <option value="@item.Id" selected>
                         @item.Name
                     </option>
-                    break;
+                    continue;
                 }
-                <option selected>
+
+                <option value="@item.Id" >
                     @item.Name
                 </option>
+
             }
         </select>
 
@@ -44,14 +47,16 @@
             {
                 @if (item.Id == Model.Post.Supplier.Id)
                 {
-                    <option selected>
+                    <option value="@item.Id"  selected>
                         @item.Name
                     </option>
-                    break;
+                    continue;
                 }
-                <option selected>
+                <option value="@item.Id" >
                     @item.Name
                 </option>
+
+
             }
         </select>
         <label for="manufacture">Manufacture</label>
@@ -61,17 +66,18 @@
             {
                 @if (item.Id == Model.Post.Manufacture.Id)
                 {
-                    <option selected>
+                    <option value="@item.Id"  selected>
                         @item.Name
                     </option>
-                    break;
+
+                    continue;
                 }
-                <option selected>
+                <option value="@item.Id" >
                     @item.Name
                 </option>
+
             }
         </select>
         <br />
-        <button type="submit" class="btn btn-primary">Edit post</button>
-    </form>
-</div>
+        <button type="submit" name="form" class="btn btn-primary">Edit post</button>
+</form>

@@ -3,63 +3,74 @@
     ViewData["Title"] = "Create post";
 }
 
-<h1>Edit post</h1>
-<div class="row">
-    <form action="/edit/" class="col-4">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Title">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-            <label for="desc">Description</label>
-            <input type="text" id="desc" class="form-control" placeholder="Description">
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input manifest="price" type="number" class="form-control" placeholder="Price">
-        </div>
-        <label for="category">Category</label>
+<h1>Create post</h1>
+    @using (Html.BeginForm())
+    {
+        <form  asp-validation-summary="ModelOnly" action="/create" method="post" >
 
-        <select id="category" class="form-control" name="category">
-            <option selected>
-                Select..
-            </option>
-            @foreach (var item in Model.Categories)
-            {
-                <option>
-                    @item.Name
-                </option>
-            }
-        </select>
+            @Html.AntiForgeryToken()
 
-        <label for="supplier">Supplier</label>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" class="form-control" id="title" asp-for="Title" aria-describedby="emailHelp" placeholder="Title">
+                <small id="emailHelp" class="form-text text-muted" asp-validation-for="Title"></small>
 
-        <select id="supplier" class="form-control" name="supplier">
-            <option selected>
-                Select..
-            </option>
-            @foreach (var item in Model.Suppliers)
-            {
-                <option>
-                    @item.Name
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <input type="text" id="desc" name="description" class="form-control" placeholder="Description">
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input name="price" type="text" class="form-control" placeholder="Price">
+            </div>
+            <label for="category">Category</label>
+
+            <select id="category" name="category" class="form-control">
+                <option value="0" selected>
+                    Select..
                 </option>
-            }
-        </select>
-        <label for="manufacture">Manufacture</label>
-      
-        <select id="manufacture" name="manufacture" class="form-control">
-            <option selected>
-                Select..
-            </option>
-            @foreach (var item in Model.Manufactures)
-            {
-                <option>
-                    @item.Name
+                @foreach (var item in Model.Categories)
+                {
+                    <option value="@item.Id">
+                        @item.Name
+                    </option>
+                }
+            </select>
+
+            <label for="supplier">Supplier</label>
+
+            <select id="supplier" class="form-control" name="supplier">
+                <option value="0" selected>
+                    Select..
                 </option>
-            }
-        </select>
-        <br />
-        <button type="submit" class="btn btn-primary">Create post</button>
-    </form>
-</div>
+                @foreach (var item in Model.Suppliers)
+                {
+                    <option value="@item.Id">
+                        @item.Name
+                    </option>
+                }
+            </select>
+            <label for="manufacture">Manufacture</label>
+
+            <select id="manufacture" name="manufacture" class="form-control">
+                <option value="0" selected>
+                    Select..
+                </option>
+                @foreach (var item in Model.Manufactures)
+                {
+                    <option value="@item.Id">
+                        @item.Name
+                    </option>
+                }
+
+            </select>
+            <br />
+            <button type="submit" class="btn btn-primary">Create post</button>
+
+        </form>
+        @if(Model.Error != null)
+        {
+            <p>@Model.Error</p>
+        }
+    }

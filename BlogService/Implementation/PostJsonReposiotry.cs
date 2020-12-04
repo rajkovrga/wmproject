@@ -13,6 +13,11 @@ namespace BlogService.Implementation
             throw new NotImplementedException();
         }
 
+        public int getByTitle(string title)
+        {
+            throw new NotImplementedException();
+        }
+
         public PostDto GetPostByID(int customerId)
         {
             throw new NotImplementedException();

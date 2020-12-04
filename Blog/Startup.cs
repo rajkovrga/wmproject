@@ -2,6 +2,7 @@ using BlogService.Implementation;
 using BlogService.Repositories;
 using BlogService.Validations;
 using DataAccess;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -26,14 +27,17 @@ namespace Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews().AddFluentValidation();
             services.AddTransient<DataContext>()
                 .AddTransient<IPostRepository, PostRepository>()
                 .AddTransient<ICategoryRepository, CategoryRepository>()
                   .AddTransient<IManufactureRepository, ManufactureRepository>()
                   .AddTransient<ISupplierRepostory, SupplierRepository>()
                 //  .AddTransient<IPostRepository, PostJsonReposiotry>() in case if you want using data from JSON file
-                .AddTransient<PostValidation>();
+                .AddTransient<PostUpdateValidation>()
+                                .AddTransient<PostValidation>();
+
 
         }
 
@@ -51,7 +55,7 @@ namespace Blog
             app.UseStaticFiles();
 
             app.UseRouting();
-            
+
 
             app.UseAuthorization();
 

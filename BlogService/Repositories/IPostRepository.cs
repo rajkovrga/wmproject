@@ -13,5 +13,7 @@ namespace BlogService.Repositories
         void DeletePost(int entityId);
         void UpdatePost(PostDto entity);
         void Save();
+        int getByTitle(string title);
+
     }
 }

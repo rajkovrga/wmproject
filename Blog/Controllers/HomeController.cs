@@ -11,10 +11,7 @@ namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
-
-        public HomeController()
-        {
-        }
+        [HttpGet]
         [Route("/posts")]
         [Route("/")]
         public IActionResult Index([FromServices] IPostRepository postRepository, [FromQuery] int page = 1)
@@ -26,6 +23,7 @@ namespace Blog.Controllers
 
             return View(model);
         }
+        [HttpGet]
         [Route("/edit/{id}")]
         public IActionResult Edit([FromServices] IPostRepository postRepository, [FromServices] IManufactureRepository manufactureRepository, [FromServices] ISupplierRepostory supplierRepostory, [FromServices] ICategoryRepository categoryRepository, int id)
         {
@@ -37,15 +35,37 @@ namespace Blog.Controllers
 
             return View(mymodel);
         }
-
+        [HttpGet]
         [Route("/create")]
-        public IActionResult Create([FromServices] IPostRepository postRepository, [FromServices] IManufactureRepository manufactureRepository, [FromServices] ISupplierRepostory supplierRepostory, [FromServices] ICategoryRepository categoryRepository, int id)
+        public IActionResult Create([FromServices] IPostRepository postRepository, PostDto post, [FromServices] IManufactureRepository manufactureRepository, [FromServices] ISupplierRepostory supplierRepostory, [FromServices] ICategoryRepository categoryRepository, int id)
         {
             dynamic mymodel = new ExpandoObject();
+
             mymodel.Categories = categoryRepository.GetCategories();
             mymodel.Suppliers = supplierRepostory.GetSuppliers();
             mymodel.Manufactures = manufactureRepository.GetManufactures();
+            mymodel.Error = TempData["error"];
+
             return View(mymodel);
+
+        }
+
+        [HttpGet]
+        [Route("/posts/{id}")]
+        public IActionResult Post(int id, [FromServices] IPostRepository postRepository)
+        {
+            var model = postRepository.GetPostByID(id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [Route("/result")]
+        public IActionResult Result(int id, [FromServices] IPostRepository postRepository)
+        {
+            var model = TempData["result"];
+
+            return View(model);
         }
     }
 }

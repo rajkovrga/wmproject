@@ -152,3 +152,8 @@ C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Shared
 C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Edit.cshtml.g.cs
 C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
+C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Post.cshtml.g.cs
+C:\Users\rajko\source\repos\Blog\Blog\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\rajko\source\repos\Blog\Blog\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Blog.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\rajko\source\repos\Blog\Blog\obj\Debug\netcoreapp3.1\Razor\Views\Home\Result.cshtml.g.cs

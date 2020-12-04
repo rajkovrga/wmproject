@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Text;
 
 namespace BlogService.Exceptions
 {
-    [Serializable]
-    internal class ModelNotFoundException : Exception
+    public class ModelNotFoundException : Exception
     {
         public ModelNotFoundException()
         {

@@ -11,9 +11,6 @@
             <th scope="col">Title</th>
             <th scope="col">Description</th>
             <th scope="col">Price</th>
-            <th scope="col">Category</th>
-            <th scope="col">Supplier</th>
-            <th scope="col">Manufacture</th>
         </tr>
     </thead>
     <tbody>
@@ -24,10 +21,9 @@
             <th>@item.Title</th>
             <td>@item.Description</td>
             <td>@item.Price</td>
-            <td>@item.Category.Name</td>
-            <td>@item.Supplier.Name</td>
-            <td>@item.Manufacture.Name</td>
+            <td><a href="/posts/@item.Id">More</a></td>
             <td><a href="/edit/@item.Id">Edit</a></td>
+            <td><a href="/delete/@item.Id">Delete</a></td>
         </tr>
 
 

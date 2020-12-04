@@ -12,49 +12,70 @@ namespace BlogService.Validations
     {
         public PostValidation(DataContext context)
         {
+
             RuleFor(x => x.Title)
-                .NotEmpty()
-                .MinimumLength(5)
-                .DependentRules(() =>
-                {
-                    RuleFor(x => x.Title)
-                    .Must(x => !context.Posts.Any(y => y.Title == x))
-                    .WithMessage("This title exist");
-                });
+         .NotEmpty()
+          .DependentRules(() =>
+          {
+              RuleFor(x => x.Description)
+                            .MinimumLength(5)
+                            .DependentRules(() =>
+                            {
+                                RuleFor(x => x.Title)
+                                .Must(x => !context.Posts.Any(y => y.Title == x))
+                                .WithMessage("This title exist");
+                            });
+
+          });
+
 
             RuleFor(x => x.Description)
               .NotEmpty()
-              .MinimumLength(5);
+              .DependentRules(() =>
+              {
+                  RuleFor(x => x.Description)
+                                .MinimumLength(5);
+
+              });
 
             RuleFor(x => x.Price)
                 .NotEmpty()
-                .GreaterThanOrEqualTo(0);
+                 .DependentRules(() =>
+                 {
+                     RuleFor(x => x.Price)
+                        .GreaterThanOrEqualTo(0);
 
-            RuleFor(x => x.Category)
+                 });
+
+
+            RuleFor(x => x.CategoryId)
                 .NotEmpty()
+                                              .WithMessage("Category is required")
                 .DependentRules(() =>
                 {
-                    RuleFor(x => x.Category)
-                    .Must(x => !context.Posts.Any(y => y.Category.Id == x.Id))
-                    .WithMessage("Category is not good");
+                    RuleFor(x => x.CategoryId)
+                    .Must(x => context.Categories.Any(y => y.Id == x))
+                    .WithMessage("Category is not exist");
                 });
 
-            RuleFor(x => x.Manufacture)
+            RuleFor(x => x.ManufactureId)
                .NotEmpty()
+                              .WithMessage("Manufacture is required")
                .DependentRules(() =>
                {
-                   RuleFor(x => x.Manufacture)
-                   .Must(x => !context.Posts.Any(y => y.Manufacture.Id == x.Id))
-                   .WithMessage("Category is not good");
+                   RuleFor(x => x.ManufactureId)
+                   .Must(x => context.Manufactures.Any(y => y.Id == x))
+                   .WithMessage("Manufacture is not exist");
                });
 
-            RuleFor(x => x.Supplier)
+            RuleFor(x => x.SupplierId)
                .NotEmpty()
+               .WithMessage("Supplier is required")
                .DependentRules(() =>
                {
-                   RuleFor(x => x.Supplier)
-                   .Must(x => !context.Posts.Any(y => y.Supplier.Id == x.Id))
-                   .WithMessage("Category is not good");
+                   RuleFor(x => x.SupplierId)
+                   .Must(x => context.Suppliers.Any(y => y.Id == x))
+                   .WithMessage("Supplier is not exist");
                });
         }
     }
