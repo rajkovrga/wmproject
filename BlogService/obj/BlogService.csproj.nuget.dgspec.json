@@ -118,6 +118,14 @@
             "FluentValidation.AspNetCore": {
               "target": "Package",
               "version": "[9.3.0, )"
+            },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.34.0, )"
+            },
+            "Nancy": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             }
           },
           "imports": [

@@ -113,7 +113,6 @@ namespace BlogService.Implementation
         }
         public void UpdatePost(PostDto entity)
         {
-            var r = entity;
 
             _postUpdateValidation.ValidateAndThrow(entity);
 

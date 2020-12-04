@@ -1,0 +1,9 @@
+C:\Users\rajko\source\repos\Blog\JsonData\bin\Debug\netcoreapp3.1\JsonData.deps.json
+C:\Users\rajko\source\repos\Blog\JsonData\bin\Debug\netcoreapp3.1\JsonData.dll
+C:\Users\rajko\source\repos\Blog\JsonData\bin\Debug\netcoreapp3.1\JsonData.pdb
+C:\Users\rajko\source\repos\Blog\JsonData\obj\Debug\netcoreapp3.1\JsonData.csprojAssemblyReference.cache
+C:\Users\rajko\source\repos\Blog\JsonData\obj\Debug\netcoreapp3.1\JsonData.AssemblyInfoInputs.cache
+C:\Users\rajko\source\repos\Blog\JsonData\obj\Debug\netcoreapp3.1\JsonData.AssemblyInfo.cs
+C:\Users\rajko\source\repos\Blog\JsonData\obj\Debug\netcoreapp3.1\JsonData.csproj.CoreCompileInputs.cache
+C:\Users\rajko\source\repos\Blog\JsonData\obj\Debug\netcoreapp3.1\JsonData.dll
+C:\Users\rajko\source\repos\Blog\JsonData\obj\Debug\netcoreapp3.1\JsonData.pdb

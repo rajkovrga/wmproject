@@ -27,18 +27,26 @@ namespace Blog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllersWithViews().AddFluentValidation();
-            services.AddTransient<DataContext>()
-                .AddTransient<IPostRepository, PostRepository>()
+            services
+                .AddTransient<DataContext>()
+                .AddSingleton<JsonContext>()
+                      .AddTransient<IPostRepository, PostRepository>()
+                  //    .AddTransient<ICategoryRepository, CategoryJsonRepository>()
+                  //.AddTransient<IManufactureRepository, ManufactureJsonRepository>()
+                  //.AddTransient<ISupplierRepostory, SupplierJsonRepository>()
                 .AddTransient<ICategoryRepository, CategoryRepository>()
-                  .AddTransient<IManufactureRepository, ManufactureRepository>()
-                  .AddTransient<ISupplierRepostory, SupplierRepository>()
-                //  .AddTransient<IPostRepository, PostJsonReposiotry>() in case if you want using data from JSON file
+                 .AddTransient<IManufactureRepository, ManufactureRepository>()
+                 .AddTransient<ISupplierRepostory, SupplierRepository>()
+               // .AddTransient<IPostRepository, PostJsonReposiotry>()  // in case if you want using data from JSON file
                 .AddTransient<PostUpdateValidation>()
-                                .AddTransient<PostValidation>();
+                                .AddTransient<PostValidation>()
+                                       .AddTransient<PostJsonUpdateValidation>()
+                                .AddTransient<PostJsonValidation>();
 
-
+            // IMPORTANT
+                //IF YOU WANT TO DO WITH JSON DATA UNCOMMENT 35, 36, 37, 41 LINES AND COMMENT 34, 38, 39, 40 LINES
+            //
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
